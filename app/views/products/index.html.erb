@@ -4,15 +4,35 @@
 <table>
     <thead>
         <tr>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Quantidade</th>            
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Count</th>            
         </tr>
     </thead>
     <tbody>
-        <% products = Product.all %>
-        <% products.each do |product| %>
+        <% @products_by_name.each do |product| %>
+        <tr>
+            <td><%= product.name %></td>
+            <td><%= product.desc %></td>
+            <td><%= product.price %></td>
+            <td><%= product.count %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Count</th>            
+        </tr>
+    </thead>
+    <tbody>
+        <% @products_by_price.each do |product| %>
         <tr>
             <td><%= product.name %></td>
             <td><%= product.desc %></td>
