@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <% @products_order_by_name.each do |product| %>
+        <% @products_filter_by_name.each do |product| %>
         <tr>
             <td><%= product.name %></td>
             <td><%= product.desc %></td>
@@ -26,5 +26,3 @@
         <% end %>
     </tbody>
 </table>
-
-<%=link_to "Create a new product", new_product_path%>
