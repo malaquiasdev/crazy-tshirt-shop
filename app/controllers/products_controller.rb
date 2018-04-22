@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
+  before_action(:set_product, only: [:edit, :update, :destroy])
 
   def new
     @product = Product.new
-    @departments = Department.all
+    set_departments
   end
 
   def index
@@ -10,22 +11,26 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product_params = params.require(:product)
-                           .permit(:name,
-                                   :desc,
-                                   :count,
-                                   :price,
-                                   :department_id)
-
     @product = Product.new(product_params)
-
     if @product.save
       flash[:notice] = 'Product created with sucess :)'
       redirect_to(root_url)
     else
-      render(:new)
+      render_view(:new)
     end
+  end
 
+  def edit
+    render_view(:edit)
+  end
+
+  def update
+    if @product.update(product_params)
+      flash[:notice] = 'Product successfully updated \o/'
+      redirect_to(root_url)
+    else
+      render_view(:edit)
+    end
   end
 
   def search
@@ -34,8 +39,28 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    id = params[:id]
-    Product.destroy(id)
+    @product.destroy
     redirect_to(root_url)
+  end
+
+  private
+
+  def render_view(view)
+    set_departments
+    render(view)
+  end
+
+  def set_departments
+    @departments = Department.all
+  end
+
+  def set_product
+    id = params[:id]
+    @product = Product.find(id)
+  end
+
+  def product_params
+    params.require(:product)
+          .permit(:name, :desc, :count, :price, :department_id)
   end
 end
