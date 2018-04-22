@@ -4,7 +4,7 @@
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
-            <th>Count</th>            
+            <th>Count</th>
         </tr>
     </thead>
     <tbody>
@@ -14,28 +14,17 @@
             <td><%= product.desc %></td>
             <td><%= product.price %></td>
             <td><%= product.count %></td>
+            <td><%= button_to "Delete",
+                    product,
+                    method: :delete,
+                    class: "btn btn-danger",
+                    data: { confirm: "Are you sure you want to delete
+                        #{product.name} ?"}
+                %>
+            </td>
         </tr>
         <% end %>
     </tbody>
 </table>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Count</th>            
-        </tr>
-    </thead>
-    <tbody>
-        <% @products_by_price.each do |product| %>
-        <tr>
-            <td><%= product.name %></td>
-            <td><%= product.desc %></td>
-            <td><%= product.price %></td>
-            <td><%= product.count %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+<%=link_to "Create a new product", new_product_path%>
