@@ -1,29 +1,17 @@
+<% if flash[:notice]%>
+    <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
+<% end %>
+
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
-            <th>Count</th>
         </tr>
     </thead>
     <tbody>
-        <% @products_order_by_name.each do |product| %>
-        <tr>
-            <td><%= product.name %></td>
-            <td><%= product.desc %></td>
-            <td><%= product.price %></td>
-            <td><%= product.count %></td>
-            <td><%= button_to "Delete",
-                    product,
-                    method: :delete,
-                    class: "btn btn-danger",
-                    data: { confirm: "Are you sure you want to delete
-                        #{product.name} ?"}
-                %>
-            </td>
-        </tr>
-        <% end %>
+        <%= render @products_order_by_name %>
     </tbody>
 </table>
 

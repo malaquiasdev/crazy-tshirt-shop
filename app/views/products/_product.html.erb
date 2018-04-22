@@ -1,0 +1,14 @@
+<tr>
+    <td><%= product.name %></td>
+    <td><%= product.desc %></td>
+    <td><%= product.price %></td>
+    <td><%= product.count %></td>
+    <td><%= button_to "Delete",
+            product,
+            method: :delete,
+            class: "btn btn-danger",
+            data: { confirm: "Are you sure you want to delete
+                #{product.name} ?"}
+        %>
+    </td>
+</tr>
