@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'products#index'
+  resources :departments
   resources :products, only: [:index, :new, :create, :destroy]
   get 'products/search' => 'products#search'
+  root 'products#index'
 end

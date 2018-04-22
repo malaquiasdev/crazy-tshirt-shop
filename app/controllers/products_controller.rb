@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @departments = Department.all
   end
 
   def index
@@ -13,7 +14,8 @@ class ProductsController < ApplicationController
                            .permit(:name,
                                    :desc,
                                    :count,
-                                   :price)
+                                   :price,
+                                   :department_id)
 
     @product = Product.new(product_params)
 
